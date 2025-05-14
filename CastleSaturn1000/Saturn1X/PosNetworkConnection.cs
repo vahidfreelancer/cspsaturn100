@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,6 +14,7 @@ namespace CastlePaySolutions.Saturn1X
         private TcpClient _tcpClient = null;
         private string _address;
         private int _port = -1;
+        private NetworkStream _mainNetworkStream;
         public PosNetworkConnection(string address,int port)
         {
             _address = address;
@@ -26,6 +29,22 @@ namespace CastlePaySolutions.Saturn1X
         private void onTcpPosConnect(IAsyncResult ar)
         {
             var result = ar.AsyncState;
+        }
+
+        public string Request(string data)
+        {
+            if (!IsConnected)
+                return null;
+            byte[] buffer = new byte[8 * 1024];
+            var request = Encoding.ASCII.GetBytes(data);
+            _mainNetworkStream = _tcpClient.GetStream();
+            _mainNetworkStream.Write(request, 0, request.Length);
+            _mainNetworkStream.Flush();
+            Main.Log("Sent");
+            _mainNetworkStream.Read(buffer, 0, _tcpClient.ReceiveBufferSize);
+            string msg = Encoding.ASCII.GetString(buffer);
+            Main.Log("Recived-> "+msg);
+            return msg;
         }
 
         public bool IsConnected

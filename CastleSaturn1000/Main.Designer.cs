@@ -35,27 +35,33 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.TabTransaction = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.BtnRefund = new System.Windows.Forms.Button();
+            this.BtnCancel = new System.Windows.Forms.Button();
+            this.BtnSendSaleRequest = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.TxbxTipAmount = new System.Windows.Forms.TextBox();
+            this.TxbxAmount = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.BtnSaveSetting = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.TxbxTerminalPort = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.TxbxTerminalIp = new System.Windows.Forms.TextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.TxbxAmount = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.BtnSaveSetting = new System.Windows.Forms.Button();
-            this.TxbxTipAmount = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.BtnSendSaleRequest = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.TabTransaction.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -110,6 +116,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage1.Location = new System.Drawing.Point(4, 23);
@@ -120,12 +127,92 @@
             this.tabPage1.Text = "Transaction";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.BtnRefund);
+            this.groupBox2.Controls.Add(this.BtnCancel);
+            this.groupBox2.Controls.Add(this.BtnSendSaleRequest);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.TxbxTipAmount);
+            this.groupBox2.Controls.Add(this.TxbxAmount);
+            this.groupBox2.Location = new System.Drawing.Point(8, 6);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(151, 267);
+            this.groupBox2.TabIndex = 0;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Sale";
+            // 
+            // BtnRefund
+            // 
+            this.BtnRefund.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.BtnRefund.Location = new System.Drawing.Point(61, 110);
+            this.BtnRefund.Name = "BtnRefund";
+            this.BtnRefund.Size = new System.Drawing.Size(77, 23);
+            this.BtnRefund.TabIndex = 2;
+            this.BtnRefund.Text = "Refund";
+            this.BtnRefund.UseVisualStyleBackColor = false;
+            this.BtnRefund.Click += new System.EventHandler(this.BtnSendSaleRequest_Click);
+            // 
+            // BtnCancel
+            // 
+            this.BtnCancel.BackColor = System.Drawing.Color.LightCoral;
+            this.BtnCancel.Location = new System.Drawing.Point(61, 139);
+            this.BtnCancel.Name = "BtnCancel";
+            this.BtnCancel.Size = new System.Drawing.Size(77, 23);
+            this.BtnCancel.TabIndex = 2;
+            this.BtnCancel.Text = "Abort";
+            this.BtnCancel.UseVisualStyleBackColor = false;
+            this.BtnCancel.Click += new System.EventHandler(this.BtnSendSaleRequest_Click);
+            // 
+            // BtnSendSaleRequest
+            // 
+            this.BtnSendSaleRequest.Location = new System.Drawing.Point(61, 81);
+            this.BtnSendSaleRequest.Name = "BtnSendSaleRequest";
+            this.BtnSendSaleRequest.Size = new System.Drawing.Size(77, 23);
+            this.BtnSendSaleRequest.TabIndex = 2;
+            this.BtnSendSaleRequest.Text = "Send";
+            this.BtnSendSaleRequest.UseVisualStyleBackColor = true;
+            this.BtnSendSaleRequest.Click += new System.EventHandler(this.BtnSendSaleRequest_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(27, 58);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(28, 14);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Tip";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 32);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(49, 14);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Amount";
+            // 
+            // TxbxTipAmount
+            // 
+            this.TxbxTipAmount.Location = new System.Drawing.Point(61, 55);
+            this.TxbxTipAmount.Name = "TxbxTipAmount";
+            this.TxbxTipAmount.Size = new System.Drawing.Size(77, 20);
+            this.TxbxTipAmount.TabIndex = 0;
+            // 
+            // TxbxAmount
+            // 
+            this.TxbxAmount.Location = new System.Drawing.Point(61, 29);
+            this.TxbxAmount.Name = "TxbxAmount";
+            this.TxbxAmount.Size = new System.Drawing.Size(77, 20);
+            this.TxbxAmount.TabIndex = 0;
+            // 
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 23);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(792, 279);
+            this.tabPage2.Size = new System.Drawing.Size(676, 279);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Report";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -142,6 +229,16 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Config";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // BtnSaveSetting
+            // 
+            this.BtnSaveSetting.Location = new System.Drawing.Point(496, 241);
+            this.BtnSaveSetting.Name = "BtnSaveSetting";
+            this.BtnSaveSetting.Size = new System.Drawing.Size(172, 23);
+            this.BtnSaveSetting.TabIndex = 1;
+            this.BtnSaveSetting.Text = "Save";
+            this.BtnSaveSetting.UseVisualStyleBackColor = true;
+            this.BtnSaveSetting.Click += new System.EventHandler(this.BtnSaveSetting_Click);
             // 
             // groupBox1
             // 
@@ -190,71 +287,33 @@
             this.TxbxTerminalIp.TabIndex = 0;
             this.TxbxTerminalIp.Text = "192.168.0.252";
             // 
-            // groupBox2
+            // groupBox3
             // 
-            this.groupBox2.Controls.Add(this.BtnSendSaleRequest);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.TxbxTipAmount);
-            this.groupBox2.Controls.Add(this.TxbxAmount);
-            this.groupBox2.Location = new System.Drawing.Point(67, 43);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(169, 114);
-            this.groupBox2.TabIndex = 0;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Sale";
+            this.groupBox3.Controls.Add(this.button1);
+            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Location = new System.Drawing.Point(186, 10);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(200, 263);
+            this.groupBox3.TabIndex = 1;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Info";
             // 
-            // TxbxAmount
+            // textBox1
             // 
-            this.TxbxAmount.Location = new System.Drawing.Point(61, 29);
-            this.TxbxAmount.Name = "TxbxAmount";
-            this.TxbxAmount.Size = new System.Drawing.Size(100, 20);
-            this.TxbxAmount.TabIndex = 0;
+            this.textBox1.Location = new System.Drawing.Point(6, 22);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(188, 56);
+            this.textBox1.TabIndex = 0;
             // 
-            // label3
+            // button1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 32);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 14);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Amount";
-            // 
-            // BtnSaveSetting
-            // 
-            this.BtnSaveSetting.Location = new System.Drawing.Point(496, 241);
-            this.BtnSaveSetting.Name = "BtnSaveSetting";
-            this.BtnSaveSetting.Size = new System.Drawing.Size(172, 23);
-            this.BtnSaveSetting.TabIndex = 1;
-            this.BtnSaveSetting.Text = "Save";
-            this.BtnSaveSetting.UseVisualStyleBackColor = true;
-            this.BtnSaveSetting.Click += new System.EventHandler(this.BtnSaveSetting_Click);
-            // 
-            // TxbxTipAmount
-            // 
-            this.TxbxTipAmount.Location = new System.Drawing.Point(61, 55);
-            this.TxbxTipAmount.Name = "TxbxTipAmount";
-            this.TxbxTipAmount.Size = new System.Drawing.Size(100, 20);
-            this.TxbxTipAmount.TabIndex = 0;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(27, 58);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(28, 14);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Tip";
-            // 
-            // BtnSendSaleRequest
-            // 
-            this.BtnSendSaleRequest.Location = new System.Drawing.Point(74, 83);
-            this.BtnSendSaleRequest.Name = "BtnSendSaleRequest";
-            this.BtnSendSaleRequest.Size = new System.Drawing.Size(75, 23);
-            this.BtnSendSaleRequest.TabIndex = 2;
-            this.BtnSendSaleRequest.Text = "Send";
-            this.BtnSendSaleRequest.UseVisualStyleBackColor = true;
-            this.BtnSendSaleRequest.Click += new System.EventHandler(this.BtnSendSaleRequest_Click);
+            this.button1.Location = new System.Drawing.Point(21, 123);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(164, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Check terminal Status";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // Main
             // 
@@ -272,11 +331,13 @@
             this.panel1.ResumeLayout(false);
             this.TabTransaction.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -304,6 +365,11 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox TxbxTipAmount;
         private System.Windows.Forms.Button BtnSendSaleRequest;
+        private System.Windows.Forms.Button BtnRefund;
+        private System.Windows.Forms.Button BtnCancel;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button1;
     }
 }
 

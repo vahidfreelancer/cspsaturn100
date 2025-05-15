@@ -46,9 +46,9 @@ namespace CastlePaySolutions
             var tip=TxbxTipAmount.Text.Trim();
             if (value.Length < 1)
                 return;
-            TransactionHandler th=new TransactionHandler();
+            TransactionHandler th=new TransactionHandler("192.168.0.252",9090);
 
-            th.
+            
         }
     }
 }

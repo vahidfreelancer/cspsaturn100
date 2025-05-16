@@ -4,10 +4,11 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CastlePaySolutions.Saturn1X
 {
-    public class SaleRequest
+    public class SellRequest
     {
         public string txnPosTxnId { get; set; } //txnPosTxnId” should be unique per request packet, the value is “000001” ~ “999999”,
                                                 // the response packet will return the same value as sent in the request packet
@@ -16,7 +17,7 @@ namespace CastlePaySolutions.Saturn1X
         public string txnAmtTip { get; set; }
     }
 
-    public class SaleRequestResponse
+    public class SellRequestResponse
     {
         public string txnAmtBase { get; set; }
         public string txnAmtCashback { get; set; }
@@ -66,8 +67,6 @@ namespace CastlePaySolutions.Saturn1X
         , PIN_ENTRY_SUCCESS
         , COMMUNICATE_WITH_HOST
     }
-
-
 
     public class Return2IdleResponse
     {
@@ -180,8 +179,6 @@ namespace CastlePaySolutions.Saturn1X
         public string txnType { get; set; }
     }
 
-
-
     public class RefundRequestResponse
     {
         public string txnAmtBase { get; set; }
@@ -230,7 +227,45 @@ namespace CastlePaySolutions.Saturn1X
 
     class TransactionHandler
     {
-        public TransactionHandler(string address, int port) { }
+        private string _terminalAddr=null;
+        private int _terminalPort = 0;
         PosNetworkConnection conn = null;
+        static int _LastTransactionId;
+
+        public static int ITransactionId { get { return _LastTransactionId++; } set { _LastTransactionId = value; } }
+        public string TransactionId
+        {
+            get
+            {
+                int newt = ITransactionId;
+                CastlePaySolutions.Properties.Settings.Default.trnsid = newt;   // #TODO needs a proper way to buffer and save trnsaction ID
+                CastlePaySolutions.Properties.Settings.Default.Save();          // Please refer to the developer guide PDF
+                return newt.ToString("000000");
+            }
+        }
+        public TransactionHandler(string address, int port) 
+        {
+            _terminalAddr = address;
+            _terminalPort = port;
+            conn = new PosNetworkConnection(address, port);
+        }
+
+        //public async Task<string>GetPosStatus() 
+        //{
+        //    return new NotImplementedException();
+        //}
+
+        public async Task<string> Sell(string amount, string tip)
+        {
+            string result = string.Empty;
+            SellRequest sr = new SellRequest();
+            sr.txnAmtTip = tip;
+            sr.txnType = "sell";
+            sr.txnPosTxnId = TransactionId;
+            sr.txnAmtBase = amount;
+            string requestBody = Newtonsoft.Json.JsonConvert.SerializeObject(sr);
+            result = await conn.Request(requestBody);
+            return result;
+        }
     }
 }

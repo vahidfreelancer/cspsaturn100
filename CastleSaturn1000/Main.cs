@@ -22,6 +22,7 @@ namespace CastlePaySolutions
             TxbxTerminalIp.Text = CastlePaySolutions.Properties.Settings.Default.terminalIp;
             TxbxTerminalPort.Text = CastlePaySolutions.Properties.Settings.Default.TerminalPort.ToString();
             lastTransId = CastlePaySolutions.Properties.Settings.Default.trnsid;
+            TransactionHandler.ITransactionId = lastTransId;
             Log("Start");
         }
         public static RichTextBox _CONSOLE;
@@ -30,7 +31,7 @@ namespace CastlePaySolutions
             if (_CONSOLE == null)
                 return;
             else
-                _CONSOLE.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}: {msg}");
+                _CONSOLE.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}: {msg}\r\n");
         }
 
         private void BtnSaveSetting_Click(object sender, EventArgs e)
@@ -40,15 +41,25 @@ namespace CastlePaySolutions
             CastlePaySolutions.Properties.Settings.Default.Save();
         }
         
-        private void BtnSendSaleRequest_Click(object sender, EventArgs e)
+        private async void BtnSendSaleRequest_Click(object sender, EventArgs e)
         {
             var value=TxbxAmount.Text.Trim();
             var tip=TxbxTipAmount.Text.Trim();
             if (value.Length < 1)
                 return;
-            TransactionHandler th=new TransactionHandler("192.168.0.252",9090);
+            string IP = TxbxTerminalIp.Text.Trim();
+            int port = int.Parse(TxbxTerminalPort.Text.Trim());
+            TransactionHandler th = new TransactionHandler(IP, port);
+            th.Sell(value, tip);
 
-            
+        }
+
+        private void BtnCheckTerminalStatus_Click(object sender, EventArgs e)
+        {
+            //string IP = TxbxTerminalIp.Text.Trim();
+            //int port = int.Parse(TxbxTerminalPort.Text.Trim());
+            //TransactionHandler th = new TransactionHandler(IP, port);
+            //th.
         }
     }
 }

@@ -20,6 +20,7 @@ namespace CastlePaySolutions.Saturn1X
             _address = address;
             _port = port;
             _tcpClient = new TcpClient(address, port);
+            
         }
         public void Connect() 
         {
@@ -31,7 +32,7 @@ namespace CastlePaySolutions.Saturn1X
             var result = ar.AsyncState;
         }
 
-        public string Request(string data)
+        public async Task<string> Request(string data)
         {
             if (!IsConnected)
                 return null;
@@ -41,12 +42,11 @@ namespace CastlePaySolutions.Saturn1X
             _mainNetworkStream.Write(request, 0, request.Length);
             _mainNetworkStream.Flush();
             Main.Log("Sent");
-            _mainNetworkStream.Read(buffer, 0, _tcpClient.ReceiveBufferSize);
+            var result = await _mainNetworkStream.ReadAsync(buffer, 0, _tcpClient.ReceiveBufferSize);
             string msg = Encoding.ASCII.GetString(buffer);
-            Main.Log("Recived-> "+msg);
+            Main.Log("Recived-> " + msg);
             return msg;
         }
-
         public bool IsConnected
         {
             get
